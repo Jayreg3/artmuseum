@@ -22,14 +22,31 @@ fetch(url)
 }
 
 window.addEventListener('hashchange', () => {
-	if (window.location.hash) /*{
-		function showObjects() {*/
-			{showObjectsTable();
-		}
+	if (window.location.hash) {
+		let galleryid = window.location.hash.slice(1);
+		console.log(galleryid);
+		//use galleryid, not gallerynumber; they're not the same; learned that the hard way
+		fetch(`https://api.harvardartmuseums.org/object?apikey=${API_KEY}&gallery=${galleryid}&page=1`)
+			.then(response2 => response2.json())
+			.then (data2 => {
+				console.log(data2);
+				data2.records.forEach(exhibit => {
+					var row = document.querySelector('#object-table').insertRow();
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
+					cell1.innerHTML = `${exhibit.title}`;
+					/*cell2.innerHTML = `${exhibit.groupid}`;
+					cell3.innerHTML = `${data.name}`;
+					cell4.innerHTML = "success";*/
+				});
+			});
+		showObjectsTable(2);
 	}
-);
+});
 
-function showObjectsTable() {
+function showObjectsTable(id) {
 	document.querySelector("#all-objects").style.display = "block";
 	document.querySelector("#all-galleries").style.display = "none";
 }
