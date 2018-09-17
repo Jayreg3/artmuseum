@@ -45,6 +45,9 @@ function showObjects(url2) {
 						cell1.innerHTML = `${exhibit.title}`;
 						cell2.innerHTML = `<img src="${exhibit.primaryimageurl}" width="100px">`;
 						//cell3.innerHTML = `${exhibit.people}`;
+						exhibit.people.forEach(author => {
+							cell3.innerHTML += `${author.name}, `;
+						});
 						cell4.innerHTML = `<a href="${exhibit.url}" target="_blank">See More</a>`;
 					});
 					if(data2.info.next) {
