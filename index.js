@@ -1,4 +1,5 @@
 const API_KEY = "c2f10da0-b77e-11e8-a4d1-69890776a30b";
+var url2;
 
 document.addEventListener("DOMContentLoaded", () => {
 	const url = `https://api.harvardartmuseums.org/gallery?apikey=${API_KEY}`;
@@ -22,14 +23,14 @@ fetch(url)
 }
 
 window.addEventListener('hashchange', () => {
-	showObjects();
-});
-
-function showObjects() {
 	if (window.location.hash) {
-			let galleryid = window.location.hash.slice(1);
-			console.log(galleryid);
-			var url2 = `https://api.harvardartmuseums.org/object?apikey=${API_KEY}&gallery=${galleryid}&page=1`;
+		let galleryid = window.location.hash.slice(1);
+		console.log(galleryid);
+		url2 = `https://api.harvardartmuseums.org/object?apikey=${API_KEY}&gallery=${galleryid}&page=1`;
+	showObjects(url2);
+}});
+
+function showObjects(url2) {
 			//use galleryid, not gallerynumber; they're not the same; learned that the hard way
 			fetch(url2)
 				.then(response2 => response2.json())
@@ -42,17 +43,17 @@ function showObjects() {
 						var cell3 = row.insertCell(2);
 						var cell4 = row.insertCell(3);
 						cell1.innerHTML = `${exhibit.title}`;
-						/*cell2.innerHTML = `${exhibit.groupid}`;
-						cell3.innerHTML = `${data.name}`;
-						cell4.innerHTML = "success";*/
+						cell2.innerHTML = `<img src="${exhibit.primaryimageurl}" width="100px">`;
+						//cell3.innerHTML = `${exhibit.people}`;
+						cell4.innerHTML = `<a href="${exhibit.url}" target="_blank">See More</a>`;
 					});
-					if(data.info.next) {
-						showGalleries(data.info.next);
+					if(data2.info.next) {
+						showObjects(data2.info.next);
 					}	
 				});
 			showObjectsTable();
 	}
-}
+
 
 function showObjectsTable() {
 	document.querySelector("#all-objects").style.display = "block";
