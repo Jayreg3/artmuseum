@@ -25,8 +25,9 @@ window.addEventListener('hashchange', () => {
 	if (window.location.hash) {
 		let galleryid = window.location.hash.slice(1);
 		console.log(galleryid);
+		var url2 = `https://api.harvardartmuseums.org/object?apikey=${API_KEY}&gallery=${galleryid}&page=1`;
 		//use galleryid, not gallerynumber; they're not the same; learned that the hard way
-		fetch(`https://api.harvardartmuseums.org/object?apikey=${API_KEY}&gallery=${galleryid}&page=1`)
+		fetch(url2)
 			.then(response2 => response2.json())
 			.then (data2 => {
 				console.log(data2);
@@ -42,11 +43,11 @@ window.addEventListener('hashchange', () => {
 					cell4.innerHTML = "success";*/
 				});
 			});
-		showObjectsTable(2);
+		showObjectsTable();
 	}
 });
 
-function showObjectsTable(id) {
+function showObjectsTable() {
 	document.querySelector("#all-objects").style.display = "block";
 	document.querySelector("#all-galleries").style.display = "none";
 }
