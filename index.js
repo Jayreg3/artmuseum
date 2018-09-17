@@ -48,6 +48,7 @@ function showObjects(url2) {
 						exhibit.people.forEach(author => {
 							cell3.innerHTML += `${author.name}, `;
 						});
+						cell3.innerHTML = cell3.innerHTML.replace(/,\s*$/, "");
 						cell4.innerHTML = `<a href="${exhibit.url}" target="_blank">See More</a>`;
 					});
 					if(data2.info.next) {
