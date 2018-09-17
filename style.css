@@ -1,0 +1,27 @@
+.title {
+    text-align: center;
+}
+
+h1 {color:purple;}
+
+a {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 5px;
+}
+
+.gallery-image {
+    width: 80px;
+}
