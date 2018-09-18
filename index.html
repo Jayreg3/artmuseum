@@ -14,6 +14,7 @@
 		</div>
 		<div id="all-objects" style="display:none">
 			<h2>Objects:</h2>
+			<button id="backbutton" onclick="displayGalleries()">Back to All Galleries</button>
 			<table id="object-table">
                 <thead>
                     <th>Name</th>
@@ -24,6 +25,16 @@
                 <tbody id="objects">
                 </tbody>
             </table>
+		</div>
+		<div id="specific-object" style="display:none">
+			<h2>Specific Object</h2>
+			<button id="backbutton2" onclick="displayObjectsTable()">Back to All Objects</button>
+			<ul>
+				<li><h4 style="display:inline">Title: </h4><p id ="title" style="display:inline">text</p></li>
+				<li><h4 style="display:inline">Description: </h4><p id ="description" style="display:inline">text</p></li>
+				<li><h4 style="display:inline">Provenance: </h4><p id ="provenance" style="display:inline">text</p></li>
+				<li><h4 style="display:inline">Accession Year: </h4><p id ="accessionyear" style="display:inline">text</p></li>
+			</ul>
 		</div>
 	</body>
 </html>
